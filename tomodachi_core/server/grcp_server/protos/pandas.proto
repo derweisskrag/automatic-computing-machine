@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service PandasService {
+  rpc GetData(EmptyRequest) returns (DataFrameResponse);
+}
+
+message EmptyRequest {}
+
+message DataFrameResponse {
+  repeated string json_rows = 1;
+}
+
+// compile: 
+// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. pandas.proto

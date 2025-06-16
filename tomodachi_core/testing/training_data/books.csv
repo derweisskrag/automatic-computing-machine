@@ -1,0 +1,16 @@
+title,price,pages,year,genre,author,rating
+The Kotlin Book,39,320,2023,Programming,JetBrains,4.5
+Rust Essentials,45,370,2021,Systems,Tim McNamara,4.8
+Python Basics,29,210,2022,Programming,Jane Smith,4.1
+Mastering Java,49,450,2020,Programming,James Gosling,4.7
+Learning C++,35,330,2022,Programming,Bjarne Stroustrup,4.4
+Advanced Algorithms,55,500,2021,Computer Science,Robert Sedgewick,4.9
+Data Structures in Python,39,300,2022,Programming,Michael T. Goodrich,4.6
+Introduction to AI,59,520,2020,Artificial Intelligence,Stuart Russell,4.8
+The Rust Programming Guide,42,360,2021,Systems,Steve Klabnik,4.7
+Hands-on Data Science,47,380,2023,Data Science,Jason Brownlee,4.5
+Modern Web Development,39,340,2022,Web Development,John Doe,4.3
+The Art of Machine Learning,50,420,2022,Machine Learning,Ted Dunning,4.8
+Python for Data Analysis,32,250,2022,Data Science,Wes McKinney,4.6
+Web Development with React,40,330,2023,Web Development,David Griffin,4.4
+Introduction to Databases,45,400,2020,Databases,Abraham Silberschatz,4.7

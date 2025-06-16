@@ -1,0 +1,20 @@
+{
+    "name": [
+        "Alice",
+        "Steve",
+        "John",
+        "Gepard"
+    ],
+    "age": [
+        "21",
+        "27",
+        "38",
+        "19"
+    ],
+    "profession": [
+        "Teacher",
+        "Software engineer",
+        "Manager",
+        "Designer"
+    ]
+}

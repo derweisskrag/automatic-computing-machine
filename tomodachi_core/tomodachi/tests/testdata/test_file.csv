@@ -1,0 +1,7 @@
+id,name,wind_speed,power_output
+1,StationA,5.2,120
+2,StationB,6.3,200
+3,StationA,5.2,120
+4,StationC,7.1,250
+5,StationB,6.3,200
+6,StationD,4.8,90

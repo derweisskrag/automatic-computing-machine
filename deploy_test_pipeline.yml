@@ -1,0 +1,73 @@
+#  Template python-build
+
+#  This template allows you to validate your python code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: python:3.12
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Test
+            caches:
+              - pip
+            script:
+              # Install dependencies only if requirements.txt exists
+              - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+              - if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+              - export CSV_PATH=$CSV_PATH
+              - export SAVE_TO_CSV=$SAVE_TO_CSV
+              - export TEST_PATH=$TEST_PATH
+
+              # Run Python tests
+              - chmod +x ./bin/run_unittests.sh
+              - ./bin/run_unittests.sh
+              - ./bin/run_unittests.sh --testing=pytest --python_version=3.12
+              - pytest -v --disable-warnings tests/test_*.py --junitxml=test-reports/report.xml
+  branches:
+    sergei/pre-release-tomodachi:
+      - step:
+          name: Pre-Release Pipeline
+          caches:
+            - pip
+          script:
+            # Install dependencies as usual
+            - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+            - if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+
+            # Deploy tools
+            - if [ -f requirements-dev.txt ]; then pip install -r requirements-deploy.txt; fi
+            
+            # Export environment variables for the pipeline: Testing
+            - export CSV_PATH=$CSV_PATH
+            - export SAVE_TO_CSV=$SAVE_TO_CSV
+            - export TEST_PATH=$TEST_PATH
+            
+      
+            # Install Lua and luarocks
+            - apt-get update && apt-get install -y lua5.3 lua5.3-dev luarocks
+
+
+            # Custom Lua script for pre-release logic
+            - luarocks install luaunit && luarocks install luafilesystem
+            
+            # Make them executable:
+            - chmod +x ./bin/scripts/increment_version.lua
+            # chmod +x ./bin/scripts/prepare_release.lua
+
+            # Run the commands before deployment
+            - ./bin/scripts/increment_version.lua  # Increment version logic
+            # - ./bin/scripts/prepare_release.lua    # Prepare release logic
+
+            # Run Python tests
+            - pytest -v --disable-warnings tests/test_*.py --junitxml=test-reports/report.xml
+
+            # Build and package for deployment
+            - python -m build
+
+
+            # Deploy variables 
+            - export TWINE_USERNAME=__token__
+            - export TWINE_PASSWORD=$TOKEN
+            - twine upload --repository testpypi dist/*     
