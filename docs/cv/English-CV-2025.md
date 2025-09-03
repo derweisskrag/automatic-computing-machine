@@ -44,6 +44,16 @@ Independent and versatile developer specializing in robust and scalable systems.
 - **Microservices**: Practiced service-oriented architecture with Deno and Rust.
 - **Packaging**: Created a Python package (`TestPyPIP`) and Rust library crate for code reusability.
 
+###  Testing & Quality Assurance
+
+- **API Testing**: Manual testing, Postman for REST APIs.
+
+- **Debugging & Analysis**: Wireshark for network analysis, internal logging, and terminal error analysis.
+
+- **Frontend Testing**: Knowledge of Cypress for automated frontend testing.
+
+ - **Testing Methodologies**: Experience with unit and integration testing.
+
 ---
 
 ## Projects
