@@ -1,0 +1,27 @@
+[package]
+name = "tonic-example"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tonic = { version = "0.14", features = ["transport", "tls-ring"] }
+tokio = { version = "1", features = ["full"] }
+prost = "0.14.1" 
+prost-types = "0.14.1"
+matchit = "0.8.4"
+redox_syscall = "0.5.17"
+tonic-prost = "0.14.0"
+tokio-stream = { version = "0.1.17", features = ["full"] }
+
+[build-dependencies]
+tonic-build = "0.14"
+tonic-prost-build = "0.14"
+
+# Trying to do my binaries, right?
+[[bin]] # This declares a binary target
+name = "server" # The executable will be named 'server'
+path = "src/main.rs" # Points to your server code
+
+[[bin]] # This declares another binary target
+name = "client" # The executable will be named 'client'
+path = "src/client.rs" # Points to your client code

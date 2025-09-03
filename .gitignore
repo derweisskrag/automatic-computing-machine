@@ -297,3 +297,8 @@ htmlcov/
 *.pkl
 *.png # If these are generated output like plots. Be careful if you have static image assets.
 *.csv # If these are generated/processed data files. Be careful if raw data is CSV.
+
+# Ignore all SQLX and Certifications!
+*.sqlx
+certifications/server.key
+*.key

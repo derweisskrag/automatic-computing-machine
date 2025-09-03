@@ -1,18 +1,11 @@
 "use client";
 
+import { NavBarProps } from "@/common_types/navProps";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function NavBar() {
+export default function NavBar({ links }: NavBarProps){
   const currentPath = usePathname();
-
-  const links = [
-    { name: "Home", href: "/" },
-    { name: "Docs", href: "/docs" },
-    { name: "Dashboard", href: "/dashboard" },
-  ];
-
-  const aboutLink = { name: "About Us", href: "/about" };
 
   return (
     <nav className="bg-gray-800 text-white p-4">
@@ -33,7 +26,10 @@ export default function NavBar() {
             </li>
           ))}
         </ul>
-        <ul>
+
+        {/* TODO: Think of an algorithm what do I want here*/}
+
+        {/* <ul>
           <li>
             <Link
               href={aboutLink.href}
@@ -46,7 +42,7 @@ export default function NavBar() {
               {aboutLink.name}
             </Link>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </nav>
   );

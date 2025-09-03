@@ -1,3 +1,4 @@
 sqlalchemy
 psycopg2-binary  # PostgreSQL driver
 pymongo         # MongoDB client
+asyncpg

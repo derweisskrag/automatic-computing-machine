@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model adopters {
+  id           Int         @id @default(autoincrement())
+  full_name    String?     @db.VarChar(150)
+  contact_info String?     @db.VarChar(150)
+  adoptions    adoptions[]
+}
+
+model adoptions {
+  id            Int       @id @default(autoincrement())
+  cat_id        Int?
+  adopter_id    Int?
+  adoption_date DateTime? @db.Date
+  adopters      adopters? @relation(fields: [adopter_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cats          cats?     @relation(fields: [cat_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model cats {
+  id           Int         @id @default(autoincrement())
+  name         String?     @db.VarChar(100)
+  breed        String?     @db.VarChar(100)
+  age          Int?
+  is_adopted   Boolean?    @default(false)
+  arrival_date DateTime?   @db.Date
+  adoptions    adoptions[]
+}
+
+model sqlx_migrations {
+  version        BigInt   @id
+  description    String
+  installed_on   DateTime @default(now()) @db.Timestamptz(6)
+  success        Boolean
+  checksum       Bytes
+  execution_time BigInt
+
+  @@map("_sqlx_migrations")
+}
+
+model users {
+  id         Int       @id @default(autoincrement())
+  username   String    @unique
+  email      String    @unique
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  role       String    @default("user")
+  tokens     tokens?
+}
+
+model tokens {
+  id            Int       @id @default(autoincrement())
+  access_token  String
+  refresh_token String
+  created_at    DateTime? @default(now()) @db.Timestamptz(6)
+  expires_at    DateTime  @db.Timestamptz(6)
+  user_id       Int       @unique(map: "unique_user_token")
+  users         users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
