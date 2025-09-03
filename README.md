@@ -1,4 +1,6 @@
-# Tuuleenergia Tomodachi
+# NeXus Central 
+
+I renamed my monorepo! However, for consistency, I keep the old name "Tomodachi" still operable. Soon, I will fix it.
 
 ## Deployed:
 
