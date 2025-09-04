@@ -2,6 +2,14 @@
 
 I renamed my monorepo! However, for consistency, I keep the old name "Tomodachi" still operable. Soon, I will fix it.
 
+## How to install:
+
+```
+git clone https://github.com/derweisskrag/automatic-computing-machine.git
+cd automatic-computing-machine
+git submodule update --init --recursive
+```
+
 ## Deployed:
 
 You can check out the first release (I am still processing): [tomodachi](https://test.pypi.org/project/tomodachi/0.1.4/)
