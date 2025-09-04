@@ -1,0 +1,3 @@
+[submodule "aegis-labs"]
+	path = aegis-labs
+	url = https://github.com/derweisskrag/aegis-labs.git
