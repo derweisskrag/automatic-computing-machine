@@ -1,3 +1,6 @@
 [submodule "aegis-labs"]
 	path = aegis-labs
 	url = https://github.com/derweisskrag/aegis-labs.git
+[submodule "academic-chronicle"]
+	path = academic-chronicle
+	url = https://github.com/derweisskrag/Academic-Chronicle.git
