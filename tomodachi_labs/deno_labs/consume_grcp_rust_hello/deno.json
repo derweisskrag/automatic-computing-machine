@@ -1,7 +1,0 @@
-{
-  "nodeModulesDir": "auto",
-  "imports": {
-    "@grpc/grpc-js": "npm:@grpc/grpc-js@^1.13.4",
-    "@grpc/proto-loader": "npm:@grpc/proto-loader@^0.8.0"
-  }
-}
