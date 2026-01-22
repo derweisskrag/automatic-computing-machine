@@ -4,3 +4,7 @@
 [submodule "academic-chronicle"]
 	path = academic-chronicle
 	url = https://github.com/derweisskrag/Academic-Chronicle.git
+[submodule "libs/DSA"]
+	path = libs/DSA
+	url = https://github.com/derweisskrag/DSA.git
+	branch = main
