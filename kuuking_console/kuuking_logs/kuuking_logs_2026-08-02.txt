@@ -1,0 +1,27 @@
+Successfully tracked task: Do some home tasks
+Added task 'Drink water' to priority 1 queue.
+Added task 'Eat some food' to priority 1 queue.
+Added task 'Code some app' to priority 2 queue.
+Added task 'Watch YouTube' to priority 3 queue.
+Added task 'Debug something' to priority 2 queue.
+Added task 'React YouTube comments' to priority 3 queue.
+Added task 'Hash it' to priority 4 queue.
+Added task 'Hash MORE!!!' to priority 4 queue.
+Added task 'JUST HUSH IT!' to priority 4 queue.
+Just executed Watch YouTube from 3 Cluster
+Just executed React YouTube comments from 3 Cluster
+Just executed Code some app from 2 Cluster
+Just executed Debug something from 2 Cluster
+Just executed Drink water from 1 Cluster
+Just executed Eat some food from 1 Cluster
+Just executed JUST HUSH IT! from Queue
+Just executed JUST HUSH IT! from 4 Cluster
+Just executed Hash MORE!!! from Queue
+Just executed Hash MORE!!! from 4 Cluster
+Just executed Hash it from Queue
+Just executed Hash it from 4 Cluster
+Added task 'One more task' to priority 1 queue.
+Added task 'Burmese Never Scowl' to priority 4 queue.
+Just executed One more task from 1 Cluster
+Just executed Burmese Never Scowl from Queue
+Just executed Burmese Never Scowl from 4 Cluster

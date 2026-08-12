@@ -1,0 +1,58 @@
+Exiting Kuuking Console cleanly.
+Successfully tracked task: Watch TV
+Successfully tracked task: Foo
+Changing priority for task: Foo to 1780070313
+Mutated priority for task: Foo to 1780070313
+Successfully tracked task: Brush Teeth
+Executed: Brush Teeth (Due: 2026-05-28)
+Successfully tracked task: Watch TV
+Successfully tracked task: Read C++ Book
+Successfully tracked task: Sleep
+Executed: Watch TV (Due: 2026-05-28)
+Mutated priority for task: Read C++ Book to 1780071562
+Executed: Sleep (Due: 2026-05-28)
+Successfully tracked task: Brush Teeth
+Successfully tracked task: Have Breakfast
+Successfully tracked task: Code Python
+Successfully tracked task: Listen Music
+Successfully tracked task: Have Lunch
+Successfully tracked task: Code Zig
+Successfully tracked task: Code Rust
+Successfully tracked task: Have Dinner
+Successfully tracked task: Watch TV
+Successfully tracked task: Stream Nioh 3
+Successfully tracked task: Sleep
+Mutated priority for task: Code Rust to 1780074725
+Successfully migrated to Rust-backed priority queue. Enjoy the performance boost!
+[BURMESE PROTOCOL]: Adding task 'Enjoy Rust' with priority 1779988335 to Rust-backed queue.
+Successfully tracked task: Enjoy Rust
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Brush Teeth (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Have Breakfast (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Code Python (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Listen Music (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Have Lunch (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Code Zig (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Have Dinner (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Watch TV (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Stream Nioh 3 (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Sleep (Due: 2026-05-28)
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Enjoy Rust
+[BURMESE PROTOCOL]: Adding task 'Did you like Rust?' with priority 1779988413 to Rust-backed queue.
+Successfully tracked task: Did you like Rust?
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Did you like Rust?
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+Executed: Code Rust
+[BURMESE PROTOCOL]: Processing next task using Rust-backed queue...
+[BURMESE PROTOCOL]: Cannot view all tasks using Rust-backed queue...

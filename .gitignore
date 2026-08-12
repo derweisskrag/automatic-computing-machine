@@ -3,6 +3,12 @@
 .env
 !.env.example
 
+# I want to ignore PDF 
+*.pdf
+
+# Ignore plots too
+**/plots/
+
 
 # BenchmarkDotNet Artifacts
 **/BenchmarkDotNet.Artifacts/

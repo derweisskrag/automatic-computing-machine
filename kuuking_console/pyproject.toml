@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kuuking_console"
+version = "0.1.0"
+description = "Personal Todo Scheduler for staying productive"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Sergei Ivanov" }
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

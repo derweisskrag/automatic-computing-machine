@@ -1,0 +1,13 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "todo-app-rs"
+version = "0.1.0"
+description = "Rust DLL priority queue extension for the Todo App benchmark"
+requires-python = ">=3.11"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+module-name = "todo_app_rs"
