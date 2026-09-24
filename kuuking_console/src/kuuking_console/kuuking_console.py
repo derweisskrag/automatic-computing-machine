@@ -34,7 +34,7 @@ from src.kuuking_console.pages.rbtree_dashboard import render_rbtree_dashboard
 from src.kuuking_console.pages.home import render_home_menu
 from src.kuuking_console.pages.help_page import render_command_help
 from src.kuuking_console.pages.dashboard import dashboard
-from src.kuuking_console.utils import clear_terminal
+from src.kuuking_console.utils import clear_terminal, burmese_timer, animate_burmese, rig_burmese, rigged_snake_30fps
 from src.kuuking_console.pages.styles import burmese_print, burmese_input
 
 PAGES = {
@@ -70,7 +70,15 @@ class KuukingConsoleMachine:
 
     def run(self):
         while True:
-            print("\n=== KUUKING CONSOLE TASK MANAGER ===") 
+            print("\n=== KUUKING CONSOLE TASK MANAGER ===")
+
+            # =====================================
+            # ========== TRY ANSI TIMER ===========
+            # =====================================
+            burmese_timer(20, 30) # Can be loading screen
+            # animate_burmese()
+            # rig_burmese()
+            rigged_snake_30fps()
             
             # PRINT OUR QUEUE
             renderer = self.render_current_page() # Get the page

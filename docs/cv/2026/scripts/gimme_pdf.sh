@@ -9,14 +9,14 @@ cd "$PROJECT_ROOT" || exit 1
 echo "📂 Working directory: $PWD"
 
 
-pandoc "$PROJECT_ROOT/accompany_poland.md" \
+pandoc "$PROJECT_ROOT/README.md" \
   --standalone \
   --pdf-engine=xelatex \
   --include-before-body="$PROJECT_ROOT/title_page.tex" \
   --lua-filter="$PROJECT_ROOT/split_pages.lua" \
   -V geometry:margin=0.75in \
   -V mainfont="Times New Roman" \
-  -o "$PROJECT_ROOT/accompany_letter_rust_job_Czechia.pdf"
+  -o "$PROJECT_ROOT/my_ultimate_CV.pdf"
 
 # Now run pandoc safely with absolute paths
 # pandoc "$PROJECT_ROOT/README.md" \

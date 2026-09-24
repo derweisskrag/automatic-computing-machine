@@ -1,0 +1,196 @@
+use macroquad::prelude::*;
+
+struct Firefly {
+    x: f32,
+    y: f32,
+    radius: f32,
+    speed_x: f32,
+    speed_y: f32,
+    phase: f32,
+    blink_speed: f32,
+}
+
+impl Firefly {
+    fn new(width: f32, height: f32) -> Self {
+        Self {
+            x: rand::gen_range(0.0, width),
+            y: rand::gen_range(0.0, height),
+            radius: rand::gen_range(2.0, 4.5),
+            speed_x: rand::gen_range(-10.0, 10.0),
+            speed_y: rand::gen_range(-6.0, 6.0),
+            phase: rand::gen_range(0.0, std::f32::consts::TAU),
+            blink_speed: rand::gen_range(2.0, 5.5),
+        }
+    }
+
+    fn reset(&mut self, width: f32, height: f32) {
+        self.x = rand::gen_range(0.0, width);
+        self.y = rand::gen_range(0.0, height);
+        self.radius = rand::gen_range(2.0, 4.5);
+        self.speed_x = rand::gen_range(-10.0, 10.0);
+        self.speed_y = rand::gen_range(-6.0, 6.0);
+        self.phase = rand::gen_range(0.0, std::f32::consts::TAU);
+        self.blink_speed = rand::gen_range(2.0, 5.5);
+    }
+
+    fn update(&mut self, width: f32, height: f32) {
+        let dt = get_frame_time() * 60.0;
+        self.x += self.speed_x * dt * 0.35;
+        self.y += self.speed_y * dt * 0.35;
+        self.phase += dt * 0.08 * self.blink_speed;
+
+        if self.x < -30.0 || self.x > width + 30.0 || self.y < -30.0 || self.y > height + 30.0 {
+            self.reset(width, height);
+        }
+    }
+
+    fn alpha(&self) -> f32 {
+        let pulse = 0.35 + (self.phase.sin() * 0.5 + 0.5) * 0.65;
+        pulse.clamp(0.2, 1.0)
+    }
+
+    fn draw(&self) {
+        let alpha = self.alpha();
+        let glow = Color::new(0.75, 1.0, 0.5, alpha * 0.26);
+        let inner = Color::new(1.0, 1.0, 0.8, alpha);
+
+        draw_circle(self.x, self.y, self.radius * 3.4, glow);
+        draw_circle(self.x, self.y, self.radius * 1.8, Color::new(0.88, 1.0, 0.6, alpha * 0.8));
+        draw_circle(self.x, self.y, self.radius, inner);
+    }
+}
+
+struct Leaf {
+    x: f32,
+    y: f32,
+    size: f32,
+    speed: f32,
+    drift: f32,
+    rotation: f32,
+    spin: f32,
+    color: Color,
+}
+
+impl Leaf {
+    fn new(width: f32, height: f32) -> Self {
+        let hue = rand::gen_range(0.08, 0.22);
+        let sat = rand::gen_range(0.6, 1.0);
+        let value = rand::gen_range(0.6, 0.95);
+        let color = hsl_to_rgb(hue, sat, value);
+
+        Self {
+            x: rand::gen_range(0.0, width),
+            y: rand::gen_range(-height, 0.0),
+            size: rand::gen_range(8.0, 18.0),
+            speed: rand::gen_range(16.0, 34.0),
+            drift: rand::gen_range(-24.0, 24.0),
+            rotation: rand::gen_range(0.0, std::f32::consts::PI * 2.0),
+            spin: rand::gen_range(-1.5, 1.5),
+            color,
+        }
+    }
+
+    fn reset(&mut self, width: f32, height: f32) {
+        self.x = rand::gen_range(0.0, width);
+        self.y = rand::gen_range(-height * 0.35, -10.0);
+        self.size = rand::gen_range(8.0, 18.0);
+        self.speed = rand::gen_range(16.0, 34.0);
+        self.drift = rand::gen_range(-24.0, 24.0);
+        self.rotation = rand::gen_range(0.0, std::f32::consts::PI * 2.0);
+        self.spin = rand::gen_range(-1.5, 1.5);
+
+        let hue = rand::gen_range(0.08, 0.22);
+        let sat = rand::gen_range(0.6, 1.0);
+        let value = rand::gen_range(0.6, 0.95);
+        self.color = hsl_to_rgb(hue, sat, value);
+    }
+
+    fn update(&mut self, width: f32, height: f32) {
+        let dt = get_frame_time() * 60.0;
+        let wind = (self.y * 0.025).sin() * 16.0;
+
+        self.x += (self.drift + wind) * dt * 0.42;
+        self.y += self.speed * dt;
+        self.rotation += self.spin * dt * 0.12;
+
+        if self.y > height + self.size {
+            self.reset(width, height);
+        }
+
+        if self.x < -self.size * 2.0 {
+            self.x = width + self.size * 2.0;
+        } else if self.x > width + self.size * 2.0 {
+            self.x = -self.size * 2.0;
+        }
+    }
+
+    fn draw(&self) {
+        draw_poly(self.x, self.y, 4, self.size, self.rotation, self.color);
+
+        let stem_color = Color::new(0.24, 0.42, 0.16, 0.9);
+        draw_line(self.x, self.y - self.size * 0.7, self.x, self.y + self.size * 0.7, 1.4, stem_color);
+    }
+}
+
+fn hsl_to_rgb(h: f32, s: f32, l: f32) -> Color {
+    let c = (1.0 - (2.0 * l - 1.0).abs()) * s;
+    let hp = h * 6.0;
+    let x = c * (1.0 - (hp % 2.0 - 1.0).abs());
+
+    let (r, g, b) = if hp < 1.0 {
+        (c, x, 0.0)
+    } else if hp < 2.0 {
+        (x, c, 0.0)
+    } else if hp < 3.0 {
+        (0.0, c, x)
+    } else if hp < 4.0 {
+        (0.0, x, c)
+    } else if hp < 5.0 {
+        (x, 0.0, c)
+    } else {
+        (c, 0.0, x)
+    };
+
+    let m = l - c / 2.0;
+    Color::new(r + m, g + m, b + m, 1.0)
+}
+
+#[macroquad::main("Forest Night")]
+async fn main() {
+    let mut fireflies = Vec::new();
+    let mut leaves = Vec::new();
+
+    for _ in 0..50 {
+        let width = screen_width();
+        let height = screen_height();
+        fireflies.push(Firefly::new(width, height));
+    }
+
+    for _ in 0..80 {
+        let width = screen_width();
+        let height = screen_height();
+        leaves.push(Leaf::new(width, height));
+    }
+
+    loop {
+        let width = screen_width();
+        let height = screen_height();
+
+        clear_background(Color::new(0.02, 0.05, 0.08, 1.0));
+
+        draw_circle(width * 0.78, height * 0.18, 26.0, Color::new(0.9, 0.94, 1.0, 1.0));
+        draw_circle(width * 0.78, height * 0.18, 34.0, Color::new(0.8, 0.9, 1.0, 0.18));
+
+        for fly in &mut fireflies {
+            fly.update(width, height);
+            fly.draw();
+        }
+
+        for leaf in &mut leaves {
+            leaf.update(width, height);
+            leaf.draw();
+        }
+
+        next_frame().await;
+    }
+}

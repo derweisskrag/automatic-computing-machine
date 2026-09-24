@@ -1,0 +1,64 @@
+use macroquad::prelude::*;
+
+struct Drop {
+    x: f32,
+    y: f32,
+    length: f32,
+    speed: f32,
+}
+
+impl Drop {
+    fn new(width: f32, height: f32) -> Self {
+        Self {
+            x: rand::gen_range(0.0, width),
+            y: rand::gen_range(-height, height),
+            length: rand::gen_range(12.0, 30.0),
+            speed: rand::gen_range(240.0, 430.0),
+        }
+    }
+
+    fn reset(&mut self, width: f32, height: f32) {
+        self.x = rand::gen_range(0.0, width);
+        self.y = rand::gen_range(-height * 0.3, -10.0);
+        self.length = rand::gen_range(12.0, 30.0);
+        self.speed = rand::gen_range(240.0, 430.0);
+    }
+
+    fn update(&mut self, width: f32, height: f32) {
+        self.y += self.speed * get_frame_time() * 60.0;
+
+        if self.y > height + self.length {
+            self.reset(width, height);
+        }
+    }
+
+    fn draw(&self) {
+        let end_x = self.x + 2.0;
+        let end_y = self.y + self.length;
+        draw_line(self.x, self.y, end_x, end_y, 1.5, Color::new(0.7, 0.9, 1.0, 0.95));
+    }
+}
+
+#[macroquad::main("Rain")]
+async fn main() {
+    let mut drops = Vec::new();
+    for _ in 0..180 {
+        let width = screen_width();
+        let height = screen_height();
+        drops.push(Drop::new(width, height));
+    }
+
+    loop {
+        let width = screen_width();
+        let height = screen_height();
+
+        clear_background(Color::new(0.03, 0.05, 0.08, 1.0));
+
+        for drop in &mut drops {
+            drop.update(width, height);
+            drop.draw();
+        }
+
+        next_frame().await;
+    }
+}
